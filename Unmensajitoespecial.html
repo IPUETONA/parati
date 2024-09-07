@@ -1,0 +1,105 @@
+<<<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culto de Jóvenes</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 45%;  /* Ancho ajustado para que los botones se adapten en móvil */
+            max-width: 300px;
+        }
+        #btnSi {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #btnNo {
+            background-color: #f44336;
+            color: white;
+        }
+        #respuesta {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="pregunta-container">
+        <h1>¿Hoy hay culto de jóvenes, vas a venir?</h1>
+        <div class="button-container">
+            <button id="btnSi" class="btn">Sí</button>
+            <button id="btnNo" class="btn">No</button>
+        </div>
+    </div>
+
+    <div id="respuesta"></div>
+
+    <script>
+        const btnSi = document.getElementById("btnSi");
+        const btnNo = document.getElementById("btnNo");
+        const respuesta = document.getElementById("respuesta");
+        const preguntaContainer = document.getElementById("pregunta-container");
+
+        // Lista de versículos proporcionados
+        const versiculos = [
+            "Salmo 119:9 - '¿Cómo puede el joven llevar una vida íntegra? Viviendo conforme a tu palabra.'",
+            "Lamentaciones 3:27 - 'Bueno es que el hombre aprenda a llevar el yugo desde su juventud.'",
+            "Eclesiastés 11:9 - 'Alégrate, joven, en tu juventud; deja que tu corazón disfrute de la adolescencia. Sigue los impulsos de tu corazón y responde al estímulo de tus ojos, pero toma en cuenta que Dios te juzgará por todo esto.'",
+            "Efesios 6:1-2 - 'Hijos, obedezcan en el Señor a sus padres, porque esto es justo. «Honra a tu padre y a tu madre — que es el primer mandamiento con promesa.'",
+            "Deuteronomio 5:16 - 'Los hijos deben honrar y obedecer a sus padres. Esto implica tratarlos con respeto y dignidad. Si conoces los mandamientos, entonces sabes la promesa que contiene este mandamiento: para que tengas larga vida y para que te vaya bien.'",
+            "1 Timoteo 4:12 - 'Que nadie te menosprecie por ser joven. Al contrario, que los creyentes vean en ti un ejemplo a seguir en la manera de hablar, en la conducta, y en amor, fe y pureza.'",
+            "Salmo 71:5 - 'Tú, Soberano Señor, has sido mi esperanza; en ti he confiado desde mi juventud.'"
+        ];
+
+        // Lista de respuestas aleatorias
+        const respuestas = [
+            "¡Perfecto, te esperamos con alegría! Que tengas un excelente día.",
+            "¡Nos vemos en el culto! Que Dios te bendiga en todo momento.",
+            "¡Qué bien! Será un gusto verte, que tengas un día lleno de bendiciones.",
+            "¡Qué alegría que vengas! Que el Señor te llene de paz hoy y siempre.",
+            "¡Fantástico! Estamos emocionados por verte, que tengas un día maravilloso."
+        ];
+
+        // Variable para el tamaño inicial del botón "Sí"
+        let tamanoBtnSi = 20;
+
+        // Función que se ejecuta cuando haces clic en el botón "No"
+        btnNo.addEventListener("click", function() {
+            tamanoBtnSi += 5; // Aumenta el tamaño de la fuente
+            btnSi.style.fontSize = tamanoBtnSi + "px"; // Aplica el nuevo tamaño
+        });
+
+        // Función que se ejecuta cuando haces clic en el botón "Sí"
+        btnSi.addEventListener("click", function() {
+            // Seleccionar un versículo aleatorio
+            const versiculoAleatorio = versiculos[Math.floor(Math.random() * versiculos.length)];
+            
+            // Seleccionar una respuesta aleatoria
+            const respuestaAleatoria = respuestas[Math.floor(Math.random() * respuestas.length)];
+            
+            // Ocultar la pregunta y los botones
+            preguntaContainer.style.display = "none";
+            
+            // Mostrar la respuesta con el versículo
+            respuesta.innerHTML = `${respuestaAleatoria}<br><br><strong>Versículo del día:</strong><br>"${versiculoAleatorio}"`;
+        });
+    </script>
+</body>
+</html>
